@@ -1,5 +1,8 @@
 """"
+
 Este arquivo é o arquivo principal da aplicação, onde a aplicação inicia.
+Ele é responsavel por iniciar a aplicação Flask, e garantir funcionamento eficaz da API
+
 """
 
 from flask import Flask, jsonify
@@ -19,5 +22,3 @@ def get_app_name():
 
 if __name__ == '__main__':
     app.run(debug=False)
-    
-
