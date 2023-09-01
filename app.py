@@ -76,7 +76,8 @@ def main():
 
     url = input("Digite uma URL para buscar: ")
     try:
-        response = requests.get(url)
+        response = requests.get(url, timeout=10)
+
         if response.status_code == 200:
             print("Conteúdo da página:", response.content)
         else:

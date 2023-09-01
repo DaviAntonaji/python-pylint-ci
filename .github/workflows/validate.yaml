@@ -9,8 +9,8 @@ on:
       - main 
 
 jobs:
-  check_unused_imports:
-    name: Check Unused Imports
+  check_code_quality:
+    name: Check code quality
     runs-on: ubuntu-latest
 
     steps:
@@ -36,7 +36,7 @@ jobs:
       - name: Check Import Order
         run: |
           pylint --load-plugins pylint_ordering --disable=all --enable=wrong-import-order ./**/*.py
-          
+
       - name: Lint Code
         run: |
           pylint --load-plugins pylint_ordering ./**/*.py
