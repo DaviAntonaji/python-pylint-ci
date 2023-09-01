@@ -3,6 +3,7 @@
 [![Python Code Quality](https://github.com/DaviAntonaji/python-pylint-ci/actions/workflows/check_code_quality_workflow.yaml/badge.svg)](https://github.com/DaviAntonaji/python-pylint-ci/actions/workflows/check_code_quality_workflow.yaml)
 ![License](https://img.shields.io/github/license/DaviAntonaji/python-pylint-ci?style=flat-square)
 ![Last Commit](https://img.shields.io/github/last-commit/DaviAntonaji/python-pylint-ci?style=flat-square)
+
 Este repositório contém um workflow de CI/CD para verificar a qualidade do código Python usando Pylint, Bandit e outras ferramentas.
 
 ## Checks de Qualidade de Código
