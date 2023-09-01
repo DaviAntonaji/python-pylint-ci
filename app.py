@@ -4,6 +4,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def get_app_name():
+    """
+    Esta rota responde a uma solicitação GET na raiz '/' da aplicação Flask.
+    
+    Retorna:
+        Um JSON contendo o nome da aplicação.
+    """
     app_name = "Minha Aplicação Flask"
     return jsonify({'name': app_name})
 
