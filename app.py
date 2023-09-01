@@ -1,3 +1,7 @@
+""""
+Este arquivo é o arquivo principal da aplicação, onde a aplicação inicia.
+"""
+
 from flask import Flask, jsonify
 
 app = Flask(__name__)
