@@ -1,4 +1,4 @@
 requests==2.23.0
 beautifulsoup4==4.12.2
 bandit==1.6.3
-safety==1.10.3
+safety==2.2.0
