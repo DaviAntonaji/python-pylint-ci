@@ -3,3 +3,4 @@ beautifulsoup4==4.12.2
 bandit==1.7.5
 safety==2.3.5
 setuptools>=65.5.1
+Flask==2.3.3
