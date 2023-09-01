@@ -24,6 +24,24 @@ class MinhaClasse:
         """
         self.idade = nova_idade
 
+    def obter_nome(self):
+        """
+        Retorna o nome da pessoa.
+
+        Returns:
+            str: O nome da pessoa.
+        """
+        return self.nome
+
+    def obter_idade(self):
+        """
+        Retorna a idade da pessoa.
+
+        Returns:
+            int: A idade da pessoa.
+        """
+        return self.idade
+
 def funcao_muito_util(numero):
     """
     Calcula o fatorial de um número.
@@ -53,8 +71,8 @@ def main():
     instancia.configurar_idade(idade)
 
     print("Informações:")
-    print("Nome:", instancia.nome)
-    print("Idade:", instancia.idade)
+    print("Nome:", instancia.obter_nome())
+    print("Idade:", instancia.obter_idade())
 
     url = input("Digite uma URL para buscar: ")
     try:
