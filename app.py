@@ -14,8 +14,10 @@ def get_app_name():
     Retorna:
         Um JSON contendo o nome da aplicação.
     """
-    app_name = "Minha Aplicação Flask"
+    app_name = "Minha primeira aplicação Flask"
     return jsonify({'name': app_name})
 
 if __name__ == '__main__':
     app.run(debug=False)
+    
+
