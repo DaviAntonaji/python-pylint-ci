@@ -34,7 +34,7 @@ jobs:
 
       - name: Check Import Order
         run: |
-          pylint --fail-under=${{ vars.branch_code_quality_threshold }} --load-plugins pylint --fail-under=${{ vars.branch_code_quality_threshold }}_ordering --disable=all --enable=wrong-import-order ./**/*.py
+          pylint --fail-under=${{ vars.branch_code_quality_threshold }} --load-plugins pylint_ordering --disable=all --enable=wrong-import-order ./**/*.py
       - name: Check PEP 8 Compliance
         run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=pep8 ./**/*.py
 
