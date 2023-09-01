@@ -2,18 +2,45 @@ import math
 import requests
 
 class MinhaClasse:
+    """
+    Classe para representar uma pessoa.
+    """
     def __init__(self, nome):
+        """
+        Inicializa uma instância da classe MinhaClasse.
+        
+        Args:
+            nome (str): O nome da pessoa.
+        """
         self.nome = nome
         self.idade = 0
 
     def configurar_idade(self, nova_idade):
+        """
+        Configura a idade da pessoa.
+
+        Args:
+            nova_idade (int): A nova idade da pessoa.
+        """
         self.idade = nova_idade
 
 def funcao_muito_util(numero):
+    """
+    Calcula o fatorial de um número.
+
+    Args:
+        numero (int): O número para calcular o fatorial.
+
+    Returns:
+        int: O fatorial do número.
+    """
     resultado = math.factorial(numero)
     return resultado
 
 def main():
+    """
+    Função principal do programa.
+    """
     print("Bem-vindo ao programa!")
 
     numero = int(input("Digite um número: "))
