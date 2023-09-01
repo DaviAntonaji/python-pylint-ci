@@ -21,8 +21,7 @@ def get_app_name():
     return jsonify({'name': app_name})
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
 
 
 
-    
