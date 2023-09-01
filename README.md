@@ -1,6 +1,6 @@
 # Python Pylint CI
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/seu-usuario/python-pylint-ci/Python%20Code%20Quality?label=Code%20Quality&logo=github&style=flat-square)](https://github.com/seu-usuario/python-pylint-ci/actions)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/DaviAntonaji/python-pylint-ci/Python%20Code%20Quality?label=Code%20Quality&logo=github&style=flat-square)](https://github.com/DaviAntonaji/python-pylint-ci/actions)
 
 Este repositório contém um workflow de CI/CD para verificar a qualidade do código Python usando Pylint, Bandit e outras ferramentas.
 
