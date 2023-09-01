@@ -66,20 +66,20 @@ def main():
     """
     print("Bem-vindo ao programa!")
 
-    numero = int(input("Digite um número: "))
+    numero = 42
     resultado = funcao_muito_util(numero)
     print("O fatorial do número é:", resultado)
 
-    nome = input("Digite seu nome: ")
+    nome = "Davi"
     instancia = MinhaClasse(nome)
-    idade = int(input("Digite sua idade: "))
+    idade = 19
     instancia.configurar_idade(idade)
 
     print("Informações:")
     print("Nome:", instancia.obter_nome())
     print("Idade:", instancia.obter_idade())
 
-    url = input("Digite uma URL para buscar: ")
+    url = "https://www.antonaji.com.br"
     try:
         response = requests.get(url, timeout=10)
 
