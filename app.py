@@ -1,11 +1,5 @@
-import sys, os, math
-from random import randint
-import datetime
-import urllib.request, requests
-
-def funcao_muito_util(numero):
-    resultado = math.factorial(numero)
-    return resultado
+import math
+import requests
 
 class MinhaClasse:
     def __init__(self, nome):
@@ -15,8 +9,12 @@ class MinhaClasse:
     def configurar_idade(self, nova_idade):
         self.idade = nova_idade
 
+def funcao_muito_util(numero):
+    resultado = math.factorial(numero)
+    return resultado
+
 def main():
-    print("Bem-vindo ao programa sujo!")
+    print("Bem-vindo ao programa!")
 
     numero = int(input("Digite um número: "))
     resultado = funcao_muito_util(numero)
@@ -38,9 +36,8 @@ def main():
             print("Conteúdo da página:", response.content)
         else:
             print("Erro ao acessar a URL")
-    except:
+    except requests.RequestException:
         print("Erro ao realizar a requisição")
 
 if __name__ == "__main__":
     main()
-
