@@ -1,6 +1,6 @@
 requests==2.23.0
 beautifulsoup4==4.12.2
-Docstring==0.7.0
+Docstring==0.1.2.4
 nose2==0.10.0
 pytest==6.2.5
 unittest2==1.1.0
