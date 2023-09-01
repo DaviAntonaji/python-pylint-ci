@@ -1,41 +1,20 @@
-"""
-Este é um exemplo de programa em Python que inclui uma classe para representar uma pessoa
-e realiza cálculos de fatorial.
-"""
 
 import math
 import requests
 
 class MinhaClasse:
-    """
-    Classe para representar uma pessoa.
-    """
+
     def __init__(self, nome):
-        """
-        Inicializa uma instância da classe MinhaClasse.
-        
-        Args:
-            nome (str): O nome da pessoa.
-        """
+       
         self.nome = nome
         self.idade = 0
 
     def configurar_idade(self, nova_idade):
-        """
-        Configura a idade da pessoa.
-
-        Args:
-            nova_idade (int): A nova idade da pessoa.
-        """
+      
         self.idade = nova_idade
 
     def obter_nome(self):
-        """
-        Retorna o nome da pessoa.
-
-        Returns:
-            str: O nome da pessoa.
-        """
+      
         return self.nome
 
     def obter_idade(self):
