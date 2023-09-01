@@ -1,12 +1,9 @@
 name: Python Code Quality
 
 on:
-  push:
-    branches:
-      - main  
   pull_request:
     branches:
-      - main 
+      - main
 
 jobs:
   check_code_quality:
@@ -30,46 +27,58 @@ jobs:
 
       - name: Check Unused Imports
         run: |
-          pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=unused-import ./**/*.py
+          pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=unused-import ./**/*.py || echo "::set-env name=failure::true"
 
       - name: Check Import Order
         run: |
-          pylint --fail-under=${{ vars.branch_code_quality_threshold }} --load-plugins pylint_ordering --disable=all --enable=wrong-import-order ./**/*.py
+          pylint --fail-under=${{ vars.branch_code_quality_threshold }} --load-plugins pylint_ordering --disable=all --enable=wrong-import-order ./**/*.py || echo "::set-env name=failure::true"
+
       - name: Check PEP 8 Compliance
-        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=pep8 ./**/*.py
+        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=pep8 ./**/*.py || echo "::set-env name=failure::true"
 
       - name: Check Docstring Conventions
-        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=missing-docstring ./**/*.py
+        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=missing-docstring ./**/*.py || echo "::set-env name=failure::true"
 
       - name: Check Naming Conventions
-        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=naming ./**/*.py
+        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=naming ./**/*.py || echo "::set-env name=failure::true"
 
       - name: Check Cyclomatic Complexity
-        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=bad-continuation ./**/*.py
+        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=bad-continuation ./**/*.py || echo "::set-env name=failure::true"
 
       - name: Check Resource Management
-        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=resource-leakage ./**/*.py
+        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=resource-leakage ./**/*.py || echo "::set-env name=failure::true"
 
       - name: Check for Duplicated Code
-        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=duplicate-code ./**/*.py
+        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=duplicate-code ./**/*.py || echo "::set-env name=failure::true"
 
       - name: Check for Security Vulnerabilities
-        run: bandit -r ./
+        run: bandit -r ./ || echo "::set-env name=failure::true"
 
       - name: Check Dependency Security
-        run: safety check --full-report
+        run: safety check --full-report || echo "::set-env name=failure::true"
 
       - name: Lint Code
         run: |
-          pylint --fail-under=${{ vars.branch_code_quality_threshold }} --load-plugins pylint_ordering ./**/*.py
+          pylint --fail-under=${{ vars.branch_code_quality_threshold }} --load-plugins pylint_ordering ./**/*.py || echo "::set-env name=failure::true"
 
-  deploy:
-    name: Deploy Code
+  reject_pr:
     runs-on: ubuntu-latest
-    needs: check_code_quality
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-
     steps:
-      - name: Deploy to Production
+      - name: Check job status
+        id: check_status
+        run: echo "::set-output name=status::${{ job.status }}"
+
+      - name: Reject Pull Request
+        if: steps.check_status.outputs.status == 'failure'
         run: |
-          echo "Aqui eu faço o deploy..."
+          PR_NUMBER=$(curl -s -X GET "${{ github.event.workflow_run.workflow_url }}/workflow-runs/${{ github.run_id }}" -H "Authorization: token ${{ secrets.GH_TOKEN }}" | jq -r '.head_branch')
+          API_URL="https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER"
+
+          # Comment on the pull request
+          curl -s -X POST "$API_URL/reviews" -H "Authorization: token ${{ secrets.GH_TOKEN }}" -H "Accept: application/vnd.github.v3+json" \
+            -d "{\"body\":\"Sorry, your pull request did not pass code quality checks. It has been rejected.\"}"
+
+          # Optionally, close the pull request (uncomment the next line to close)
+          #curl -s -X PATCH "$API_URL" -H "Authorization: token ${{ secrets.GH_TOKEN }}" -H "Accept: application/vnd.github.v3+json" \
+          #  -d "{\"state\":\"closed\"}"
+
