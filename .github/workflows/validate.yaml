@@ -39,4 +39,4 @@ jobs:
 
       - name: Lint Code
         run: |
-          pylint -fail-under=8 --load-plugins pylint_ordering ./**/*.py
+          pylint --fail-under=8 --load-plugins pylint_ordering ./**/*.py

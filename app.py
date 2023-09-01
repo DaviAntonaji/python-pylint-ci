@@ -18,31 +18,16 @@ class MinhaClasse:
         return self.nome
 
     def obter_idade(self):
-        """
-        Retorna a idade da pessoa.
-
-        Returns:
-            int: A idade da pessoa.
-        """
+        
         return self.idade
 
 def funcao_muito_util(numero):
-    """
-    Calcula o fatorial de um número.
-
-    Args:
-        numero (int): O número para calcular o fatorial.
-
-    Returns:
-        int: O fatorial do número.
-    """
+    
     resultado = math.factorial(numero)
     return resultado
 
 def main():
-    """
-    Função principal do programa.
-    """
+   
     print("Bem-vindo ao programa!")
 
     numero = int(input("Digite um número: "))
