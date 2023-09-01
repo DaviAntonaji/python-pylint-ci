@@ -62,7 +62,9 @@ jobs:
           pylint --fail-under=${{ vars.branch_code_quality_threshold }} --load-plugins pylint_ordering ./**/*.py || echo "::set-env name=failure::true"
 
   reject_pr:
+    name: If job failed deny PR
     runs-on: ubuntu-latest
+    depends: check_code_quality
     steps:
       - name: Check job status
         id: check_status
