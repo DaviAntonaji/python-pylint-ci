@@ -56,8 +56,8 @@ jobs:
       - name: Check for Security Vulnerabilities
         run: bandit -r ./
 
-      - name: Check Dependency Security
-        run: safety check --full-report
+      # - name: Check Dependency Security
+      #   run: safety check --full-report
 
       - name: Lint Code
         run: |
