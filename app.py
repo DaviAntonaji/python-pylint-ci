@@ -22,5 +22,3 @@ def get_app_name():
 
 if __name__ == '__main__':
     app.run(debug=False)
-    
-

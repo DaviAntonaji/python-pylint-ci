@@ -12,7 +12,12 @@ jobs:
     steps:
       - name: Check job status
         id: check_status
-        run: echo "::set-output name=status::${{ job.status }}"
+        run: |
+          if [ "$failure" == "true" ]; then
+            echo "::set-output name=status::failure"
+          else
+            echo "::set-output name=status::success"
+          fi
       
       - name: Reject Pull Request
         if: steps.check_status.outputs.status == 'failure'
