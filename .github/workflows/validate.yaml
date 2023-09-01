@@ -64,7 +64,7 @@ jobs:
   reject_pr:
     name: If job failed deny PR
     runs-on: ubuntu-latest
-    depends: check_code_quality
+    needs: check_code_quality
     steps:
       - name: Check job status
         id: check_status
