@@ -64,8 +64,20 @@ jobs:
   reject_pr:
     name: If job failed deny PR
     runs-on: ubuntu-latest
-    needs: check_code_quality
+    if: always() 
     steps:
+
+      - name: Wait for check_code_quality job to complete
+        id: wait
+        run: |
+          # Wait for the check_code_quality job to complete
+          while [[ "$(curl -s -H "Authorization: token ${{ secrets.GH_TOKEN }}" -H "Accept: application/vnd.github.v3+json" \
+              ${{ github.api_url }}/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs | jq -r '.jobs[].status')" != "completed" ]]; do
+            sleep 10
+          done
+          echo "::set-output name=completed::true"
+
+
       - name: Check job status
         id: check_status
         run: echo "::set-output name=status::${{ job.status }}"
