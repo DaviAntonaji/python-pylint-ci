@@ -39,6 +39,14 @@ Para executar as verificações de qualidade de código localmente, você pode s
 pip install -r requirements.txt
 pip install pylint
 ```
+
+3. Execute os checks de qualidade de código:
+```
+pylint --fail-under=<limite-de-qualidade> ./**/*.py
+bandit -r ./
+safety check --full-report
+
+```
 Lembre-se de substituir <limite-de-qualidade> pelo seu limite desejado.
 
 ## Implantação
