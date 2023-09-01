@@ -1,6 +1,6 @@
 # Python Pylint CI
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/DaviAntonaji/python-pylint-ci/Python%20Code%20Quality?label=Code%20Quality&logo=github&style=flat-square)](https://github.com/DaviAntonaji/python-pylint-ci/actions)
+[![Python Code Quality](https://github.com/DaviAntonaji/python-pylint-ci/actions/workflows/check_code_quality_workflow.yaml/badge.svg)](https://github.com/DaviAntonaji/python-pylint-ci/actions/workflows/check_code_quality_workflow.yaml)
 
 Este repositório contém um workflow de CI/CD para verificar a qualidade do código Python usando Pylint, Bandit e outras ferramentas.
 
@@ -30,7 +30,7 @@ Para executar as verificações de qualidade de código localmente, você pode s
 1. Clone o repositório:
 
    ```shell
-   git clone https://github.com/seu-usuario/python-pylint-ci.git
+   git clone https://github.com/DaviAntonaji/python-pylint-ci.git
    cd python-pylint-ci
     ```
 
