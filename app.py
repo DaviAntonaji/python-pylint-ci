@@ -1,3 +1,8 @@
+"""
+Este é um exemplo de programa em Python que inclui uma classe para representar uma pessoa
+e realiza cálculos de fatorial.
+"""
+
 import math
 import requests
 
