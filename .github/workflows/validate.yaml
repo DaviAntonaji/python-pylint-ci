@@ -61,7 +61,7 @@ jobs:
 
       - name: Lint Code
         run: |
-          pylint --fail-under=${{ github.event.repository.master_branch_code_quality_threshold }} --load-plugins pylint_ordering ./**/*.py
+          pylint --fail-under=${{ env.branch_code_quality_threshold }} --load-plugins pylint_ordering ./**/*.py
 
   deploy:
     name: Deploy Code
