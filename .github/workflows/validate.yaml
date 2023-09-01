@@ -26,32 +26,32 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pylint
+          pip install pylint --fail-under=${{ vars.branch_code_quality_threshold }}
 
       - name: Check Unused Imports
         run: |
-          pylint --disable=all --enable=unused-import ./**/*.py
+          pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=unused-import ./**/*.py
 
       - name: Check Import Order
         run: |
-          pylint --load-plugins pylint_ordering --disable=all --enable=wrong-import-order ./**/*.py
+          pylint --fail-under=${{ vars.branch_code_quality_threshold }} --load-plugins pylint --fail-under=${{ vars.branch_code_quality_threshold }}_ordering --disable=all --enable=wrong-import-order ./**/*.py
       - name: Check PEP 8 Compliance
-        run: pylint --disable=all --enable=pep8 ./**/*.py
+        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=pep8 ./**/*.py
 
       - name: Check Docstring Conventions
-        run: pylint --disable=all --enable=missing-docstring ./**/*.py
+        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=missing-docstring ./**/*.py
 
       - name: Check Naming Conventions
-        run: pylint --disable=all --enable=naming ./**/*.py
+        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=naming ./**/*.py
 
       - name: Check Cyclomatic Complexity
-        run: pylint --disable=all --enable=bad-continuation ./**/*.py
+        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=bad-continuation ./**/*.py
 
       - name: Check Resource Management
-        run: pylint --disable=all --enable=resource-leakage ./**/*.py
+        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=resource-leakage ./**/*.py
 
       - name: Check for Duplicated Code
-        run: pylint --disable=all --enable=duplicate-code ./**/*.py
+        run: pylint --fail-under=${{ vars.branch_code_quality_threshold }} --disable=all --enable=duplicate-code ./**/*.py
 
       - name: Check for Security Vulnerabilities
         run: bandit -r ./
@@ -61,7 +61,7 @@ jobs:
 
       - name: Lint Code
         run: |
-          pylint --fail-under=${{ env.branch_code_quality_threshold }} --load-plugins pylint_ordering ./**/*.py
+          pylint --fail-under=${{ vars.branch_code_quality_threshold }} --load-plugins pylint --fail-under=${{ vars.branch_code_quality_threshold }}_ordering ./**/*.py
 
   deploy:
     name: Deploy Code
